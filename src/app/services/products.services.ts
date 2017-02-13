@@ -28,4 +28,16 @@ export class ProductsService {
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  getProduct(ean: number) : Observable<Product[]> {
+    const headers = new Headers();
+    headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    headers.append('Access-Control-Allow-Methods', 'GET');
+    headers.append('Access-Control-Allow-Origin', '*');
+    // ...using get request
+
+    return this.http.get(this.productsUrl + 'product/' + ean, {headers: headers})
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }
