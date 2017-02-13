@@ -1,1 +1,9 @@
-TEST 123
+<div class="detailpage-product">
+  <div *ngIf="product">
+    <h2>{{product.name}}</h2>
+    <img src="{{product.image}}"/>
+    <p><strong>price: </strong>{{product.price}}</p>
+    <p><strong>ean: </strong>{{product.ean}}</p>
+    <p><strong>categorie: </strong>{{product.categorie}}</p>
+  </div>
+</div>

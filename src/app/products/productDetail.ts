@@ -19,7 +19,7 @@ export class ProductDetail implements OnInit{
     private route: ActivatedRoute
   ){}
   // Local properties
-  products  : Product[];
+  product  : Product[];
 
   loadProduct(id: number){
 
@@ -27,7 +27,7 @@ export class ProductDetail implements OnInit{
     this.productsService.getProduct(id)
       .subscribe(
         products => {
-          this.products = products;
+          this.product = products;
           console.log(products);
         }, //Bind to view
         err => {
