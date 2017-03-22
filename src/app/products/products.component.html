@@ -1,9 +1,62 @@
-<div class="products-component">
-  <h1>Products</h1>
-  <ul>
-    <!--<li *ngFor="let product of products">-->
-      <!--test-->
-    <!--</li>-->
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#Videokaarten" aria-controls="Videokaarten" role="tab" data-toggle="tab">Videokaarten</a></li>
+    <li role="presentation"><a href="#Processoren" aria-controls="Processoren" role="tab" data-toggle="tab">Processoren</a></li>
+    <li role="presentation"><a href="#Memorykaarten" aria-controls="Memorykaarten" role="tab" data-toggle="tab">Memorykaarten</a></li>
   </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div style="height: 40px;"></div>
+    <div role="tabpanel" class="tab-pane active" id="Videokaarten">
+
+      <div class="row">
+
+        <div class="col-xs-6 col-sm-3" *ngFor=" let product of videokaarten;  let i=index">
+          <div class="thumbnail"  *ngIf="i<8">
+            <img src="/app/assets/images/{{product.image}}" style=" height: 100px;"/>
+            <div class="caption">
+              <h3>{{ product.name }}</h3>
+              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="Processoren">
+      <div class="row" >
+
+        <div class="col-xs-6 col-sm-3" *ngFor=" let product of processoren;  let i=index">
+          <div class="thumbnail"  *ngIf="i<8">
+            <img src="/app/assets/images/{{product.image}}" style=" height: 100px;"/>
+            <div class="caption">
+              <h3>{{ product.name }}</h3>
+              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="Memorykaarten">
+      <div class="row">
+
+        <div class="col-xs-6 col-sm-3" *ngFor=" let product of memorykaarten;  let i=index">
+          <div class="thumbnail"  *ngIf="i<8">
+            <img src="/app/assets/images/{{product.image}}" style=" height: 100px;"/>
+            <div class="caption">
+              <h3>{{ product.name }}</h3>
+              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 </div>

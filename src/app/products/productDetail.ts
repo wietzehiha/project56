@@ -17,34 +17,30 @@ export class ProductDetail implements OnInit{
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute
-  ){}
-  // Local properties
-  product  : Product[];
-
-  loadProduct(id: number){
-
-    // Get all Products
-    this.productsService.getProduct(id)
-      .subscribe(
-        products => {
-          this.product = products;
-          console.log(products);
-        }, //Bind to view
-        err => {
-          // Log errors if any
-          console.log('----------------------------------------------------------------------------------------------');
-          console.log(err);
-        });
-  }
-
-  ngOnInit(){
+  ){
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
 
       // In a real app: dispatch action to load the details here.
     });
 
-    // Load products
-    this.loadProduct(this.id);
+    // Get all Products
+    this.productsService.getProduct(this.id)
+      .subscribe(
+        products => {
+          this.product = products;
+          console.log(this.product);
+        }, //Bind to view
+        err => {
+          // Log errors if any
+          console.log('----------------------------------------------------------------------------------------------');
+          console.log(err);
+        });
+
+  }  // Local properties
+  product  : Product[];
+
+  ngOnInit(){
+
   }
 }

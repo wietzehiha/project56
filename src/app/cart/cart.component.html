@@ -1,53 +1,74 @@
-<div [hidden]="submitted">
-  <h1>Matcher PC</h1>
-  <form (ngSubmit)="onSubmit()" #cartForm="ngForm" class="form-horizontal">
-    <div class="form-group">
-      <label for="price">Price</label>
-      <input type="text" class="form-control" id="price"
-             required
-             [(ngModel)]="model.price" name="price"
-             #price="ngModel">
-      <div [hidden]="price.valid || price.pristine"
-           class="alert alert-danger">
-        Price is required
+<h1>Matcher PC</h1>
+<div class="row">
+  <div class="col-xs-6">
+    <form (ngSubmit)="onSubmit()" #cartForm="ngForm" class="form-horizontal">
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" class="form-control" id="price"
+               required
+               [(ngModel)]="model.price" name="price"
+               #price="ngModel">
+        <div [hidden]="price.valid || price.pristine"
+             class="alert alert-danger">
+          Price is required
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="types">Type</label>
-      <select class="form-control" id="types" required [(ngModel)]="model.type" name="types" #type="ngModel">
-        <option *ngFor="let type of types" [value]="type">{{type}}</option>
-      </select>
-      <div [hidden]="type.valid || type.pristine" class="alert alert-danger">
-        types is required
+      <div class="form-group">
+        <label for="types">Type</label>
+        <select class="form-control" id="types" required [(ngModel)]="model.type" name="types" #type="ngModel">
+          <option *ngFor="let type of types" [value]="type">{{type}}</option>
+        </select>
+        <div [hidden]="type.valid || type.pristine" class="alert alert-danger">
+          types is required
+        </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-success" [disabled]="!cartForm.form.valid">Match PC</button>
-    <button type="button" class="btn btn-default" (click)="newCart(); cartForm.reset()">Reset</button>
-  </form>
+      <button type="submit" class="btn btn-success" [disabled]="!cartForm.form.valid">Match PC</button>
+      <button type="button" class="btn btn-default" (click)="newCart(); cartForm.reset()">Reset</button>
+    </form>
+  </div>
+  <div class="col-xs-6" [hidden]="!model.videokaart && !model.processor && !model.memory ">
+    <table class="table table-bordered">
+      <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Price</td>
+      </tr>
+      <tr [hidden]="!model.videokaart">
+        <td><img src="/app/assets/images/{{ model.videokaart.image }}" alt="" class="img-rounded" style="width:50px;"></td>
+        <td><a routerLink="/product/{{ model.videokaart.EAN }}">{{ model.videokaart.name }}</a></td>
+        <td>{{ model.videokaart.price }}</td>
+        <td><button type="button" class="btn btn-default" (click)="removeVideo()">Remove</button></td>
+      </tr>
+      <tr [hidden]="!model.processor">
+        <td><img src="/app/assets/images/{{ model.processor.image }}" alt="" class="img-rounded" style="width:50px;"></td>
+        <td><a routerLink="/product/{{ model.processor.EAN }}">{{ model.processor.name }}</a></td>
+        <td>{{ model.processor.price }}</td>
+        <td><button type="button" class="btn btn-default" (click)="removeProcessor()">Remove</button></td>
+      </tr>
+      <tr [hidden]="!model.memory">
+        <td><img src="/app/assets/images/{{ model.memory.image }}" alt="" class="img-rounded" style="width:50px;"></td>
+        <td><a routerLink="/product/{{ model.memory.EAN }}">{{ model.memory.name }}</a></td>
+        <td>{{ model.memory.price }}</td>
+        <td><button type="button" class="btn btn-default" (click)="removeMemory()">Remove</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Totaal</td>
+        <td>{{ model.totaal }}</td>
+      </tr>
+    </table>
+  </div>
 </div>
-<div [hidden]="!submitted">
-  <h2>Your settings</h2>
-  <div class="row">
-    <div class="col-xs-3">Price</div>
-    <div class="col-xs-9  pull-left">{{ model.price }}</div>
+
+
+<div class="row">
+  <div class="col-xs-6">
+    Matcher
   </div>
-  <div class="row">
-    <div class="col-xs-3">Type</div>
-    <div class="col-xs-9 pull-left">{{ model.type }}</div>
+  <div class="col-xs-6">
+    Cart
   </div>
-  <div class="row">
-    <div class="col-xs-3">Videokaart</div>
-    <div class="col-xs-9 pull-left">{{ model.videokaart }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3">Processor</div>
-    <div class="col-xs-9 pull-left">{{ model.processor }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3">Memory</div>
-    <div class="col-xs-9 pull-left">{{ model.memory }}</div>
-  </div>
-  <br>
-  <button class="btn btn-primary" (click)="submitted=false">Edit price or type</button>
+  <products></products>
 </div>
+
 

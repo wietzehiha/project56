@@ -3,8 +3,9 @@ export class Cart {
     public id: number,
     public type: string,
     public price: number,
-    public videokaart: string,
-    public processor: string,
-    public memory: string
+    public videokaart: any,
+    public processor: any,
+    public memory: any,
+    public totaal: number
   ){}
 }

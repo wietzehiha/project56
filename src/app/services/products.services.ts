@@ -1,7 +1,7 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Product }           from '../products/model/product';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
@@ -16,28 +16,44 @@ export class ProductsService {
   // private commentsUrl = 'http://localhost:3000/api/comments';
   private productsUrl = 'http://localhost:8080/project56/';
 
-  // Fetch all existing comments
-  getVideokaarten() : Observable<Product[]>{
-
+  header() {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Headers', 'Content-Type');
     headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Access-Control-Allow-Origin', '*');
-    // ...using get request
-    return this.http.get(this.productsUrl + 'videokaarten', {headers: headers})
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+    return headers;
+  }
+
+  // Get all videokaarten.
+  getVideokaarten() : Observable<Product[]>{
+    const headers = this.header();
+    return this.http.get(this.productsUrl + 'videokaart', {headers: headers})
+      .map((res) => res.json())
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  // Get all processoren.
+  getProcessor() : Observable<Product[]>{
+
+    const headers = this.header();
+    return this.http.get(this.productsUrl + 'processor', {headers: headers})
+      .map((res) => res.json())
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  // Get all memorycards.
+  getMemory() : Observable<Product[]>{
+    const headers = this.header();
+    return this.http.get(this.productsUrl + 'geheugen', {headers: headers})
+      .map((res) => res.json())
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
   getProduct(ean: number) : Observable<Product[]> {
-    const headers = new Headers();
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', 'GET');
-    headers.append('Access-Control-Allow-Origin', '*');
-    // ...using get request
-
-    return this.http.get(this.productsUrl + 'product/' + ean, {headers: headers})
+    const headers = this.header();
+    return this.http.get(this.productsUrl + 'component?ean=' + ean, {headers: headers})
       .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 }

@@ -1,9 +1,9 @@
 <div class="detailpage-product">
   <div *ngIf="product">
-    <h2>{{product.name}}</h2>
-    <img src="{{product.image}}"/>
-    <p><strong>price: </strong>{{product.price}}</p>
-    <p><strong>ean: </strong>{{product.ean}}</p>
-    <p><strong>categorie: </strong>{{product.categorie}}</p>
+    <h2>{{product.products[0].name}}</h2>
+    <img src="/app/assets/images/{{product.products[0].image}}"/>
+    <p><strong>price: </strong>{{product.products[0].price}}</p>
+    <p><strong>ean: </strong>{{product.products[0].EAN}}</p>
+    <p><strong>categorie: </strong>{{product.products[0].category}}</p>
   </div>
 </div>
